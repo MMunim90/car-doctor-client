@@ -3,3 +3,10 @@
  @plugin "daisyui" {
    themes: light --default;
  }
+
+
+.overlay-bg {
+  background: #000000;
+background: #000000;
+background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(17, 17, 17, 0) 99%, rgba(255, 255, 255, 1) 100%);
+}
