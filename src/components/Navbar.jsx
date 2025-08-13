@@ -53,15 +53,21 @@ export default function Navbar() {
           </ul>
         </div>
         <Link href={"/"} className="text-xl">
-          <Image src={"/assets/logo.svg"} width={87} height={87} alt="logo"/>
+          <Image src={"/assets/logo.svg"} width={87} height={87} alt="logo" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navMenu()}
-        </ul>
+        <ul className="menu menu-horizontal px-1 text-lg">{navMenu()}</ul>
       </div>
       <div className="navbar-end">
+        <ul className="flex mr-4 gap-4 text-lg">
+          <li className="hover:bg-gray-200 px-3 py-1 rounded-md">
+            <Link href={"/login"}>Login</Link>
+          </li>
+          <li className="hover:bg-gray-200 px-3 py-1 rounded-md">
+            <Link href={"/register"}>Register</Link>
+          </li>
+        </ul>
         <a className="btn btn-outline rounded text-[#FF3811]">Appointment</a>
       </div>
     </div>
