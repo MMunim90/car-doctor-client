@@ -1,18 +1,18 @@
 "use client";
 import { registerUser } from "@/app/actions/auth/registerUser";
+import SocialLogin from "@/app/login/components/SocialLogin";
 import React from "react";
-import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
 
 export default function RegisterFrom() {
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
 
-        await registerUser({name, email, password})
-    }
+    await registerUser({ name, email, password });
+  };
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -52,36 +52,9 @@ export default function RegisterFrom() {
         Sign Up
       </button>
 
+      <p className="text-center">Or Sign Up With</p>
       {/* Social Sign Up */}
-      <div className="mt-6 flex justify-center">
-        <div style={{ display: "flex", gap: "40px", fontSize: "24px" }}>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-300 p-3 rounded-full"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="https://google.com"
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-300 p-3 rounded-full"
-          >
-            <FaGoogle />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noreferrer"
-            className="bg-gray-300 p-3 rounded-full"
-          >
-            <FaLinkedin />
-          </a>
-        </div>
-      </div>
-
+      <SocialLogin></SocialLogin>
       {/* Login Link */}
       <p className="text-center text-sm mt-6">
         Already have an account?{" "}

@@ -1,6 +1,8 @@
 import { loginUser } from "@/app/actions/auth/loginUser";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -17,7 +19,7 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log(credentials)
+        console.log(credentials);
         // Add logic here to look up the user from the credentials supplied
         const user = await loginUser(credentials);
         console.log(user);
@@ -33,10 +35,20 @@ export const authOptions = {
         }
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
   ],
   pages: {
-    signIn: "/login"
-  }
+    signIn: "/login",
+  },
 };
 
 const handler = NextAuth(authOptions);
