@@ -22,8 +22,7 @@ export default function LoginPage() {
         {/* Right Side Form */}
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
           <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
-
-         <LoginForm></LoginForm>
+            <LoginForm></LoginForm>
         </div>
       </div>
     </div>

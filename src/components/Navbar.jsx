@@ -1,8 +1,13 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function Navbar() {
+  const session = useSession();
+  const {data: cookie, status} = session;
+  console.log(session);
   const navMenu = () => {
     return (
       <>
@@ -61,12 +66,19 @@ export default function Navbar() {
       </div>
       <div className="navbar-end">
         <ul className="flex mr-4 gap-4 text-lg">
+          {status == "authenticated" ? (<>
+          <li onClick={() => signOut()} className="hover:bg-gray-200 px-3 py-1 rounded-md cursor-pointer">
+            Logout
+          </li>
+          </>) : (<>
           <li className="hover:bg-gray-200 px-3 py-1 rounded-md">
             <Link href={"/login"}>Login</Link>
           </li>
           <li className="hover:bg-gray-200 px-3 py-1 rounded-md">
             <Link href={"/register"}>Register</Link>
           </li>
+          </>)}
+          
         </ul>
         <a className="btn btn-outline rounded text-[#FF3811]">Appointment</a>
       </div>
