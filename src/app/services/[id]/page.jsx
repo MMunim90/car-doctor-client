@@ -12,7 +12,7 @@ export default async function serviceDetailPage({ params }) {
         <figure className="relative">
           <Image
             src={"/assets/images/checkout/checkout.png"}
-            width={1200}
+            width={2000}
             height={300}
             alt="banner"
             className="mx-auto"
@@ -34,7 +34,7 @@ export default async function serviceDetailPage({ params }) {
         <section className="w-9/12">
           <Image
             src={data.img}
-            width={1000}
+            width={1400}
             height={280}
             alt={data.title}
           ></Image>
