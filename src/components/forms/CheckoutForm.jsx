@@ -53,23 +53,23 @@ export default function CheckoutForm({ data }) {
         body: JSON.stringify(formData),
       });
 
-        if (res.ok) {
-          toast.success("Order Confirmed Successfully!");
-          setFormData({
-            name: cookie?.user?.name || "",
-            phone: "",
-            email: cookie?.user?.email || "",
-            date: "",
-            dueAmount: data?.price || "",
-            address: "",
-            message: "",
-            service_id: data._id,
-            service_name: data.title,
-            service_img: data.img,
-          });
-        } else {
-          toast.error("Failed to confirm order.");
-        }
+      if (res.ok) {
+        toast.success("Order Confirmed Successfully!");
+        setFormData({
+          name: cookie?.user?.name || "",
+          phone: "",
+          email: cookie?.user?.email || "",
+          date: "",
+          dueAmount: data?.price || "",
+          address: "",
+          message: "",
+          service_id: data._id,
+          service_name: data.title,
+          service_img: data.img,
+        });
+      } else {
+        toast.error("Failed to confirm order.");
+      }
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong.");
@@ -90,7 +90,20 @@ export default function CheckoutForm({ data }) {
           />
           <div className="transparent-layer overlay-bg absolute w-full h-full rounded top-0">
             <div className="w-full h-full flex items-center ml-24">
-              <h1 className="text-white text-4xl font-bold">Check Out</h1>
+              <div>
+                <h1 className="text-white text-4xl font-bold">Check Out</h1>
+                <div className="breadcrumbs text-sm text-white">
+                  <ul>
+                    <li>
+                      <a href="/">Home</a>
+                    </li>
+                    <li>
+                      <a href={`/services/${data?._id}`}>Service Details</a>
+                    </li>
+                    <li>Check Out</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </figure>

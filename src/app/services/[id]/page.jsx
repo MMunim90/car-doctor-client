@@ -4,7 +4,7 @@ import React from "react";
 
 export default async function serviceDetailPage({ params }) {
   const p = await params;
-  const res = await fetch(`http://localhost:3000/api/service/${p.id}`)
+  const res = await fetch(`http://localhost:3000/api/service/${p.id}`);
   const data = await res.json();
   return (
     <div className="w-11/12 mx-auto space-y-4">
@@ -24,6 +24,14 @@ export default async function serviceDetailPage({ params }) {
                 <h1 className="text-white text-4xl font-bold">
                   Service Details
                 </h1>
+                <div className="breadcrumbs text-sm text-white">
+                  <ul>
+                    <li>
+                      <a href="/">Home</a>
+                    </li>
+                    <li>Service Details</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -42,9 +50,14 @@ export default async function serviceDetailPage({ params }) {
           <p>{data.description}</p>
         </section>
         <section className="w-3/12">
-        <Link href={`/checkout/${data._id}`}>
-          <button className="w-full bg-amber-600 text-white py-3 text-xl font-bold cursor-pointer">Checkout</button></Link>
-          <p className="text-center mt-4 text-2xl font-bold">Price: ${data.price}</p>
+          <Link href={`/checkout/${data._id}`}>
+            <button className="w-full bg-amber-600 text-white py-3 text-xl font-bold cursor-pointer">
+              Checkout
+            </button>
+          </Link>
+          <p className="text-center mt-4 text-2xl font-bold">
+            Price: ${data.price}
+          </p>
         </section>
       </div>
     </div>
