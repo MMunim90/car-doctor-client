@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { X, Trash2, ArrowLeft } from "lucide-react";
+import DeleteBookingButton from "@/app/my-bookings/components/DeleteBookingButton";
 
 export default function MyBookingsTable({data}) {
   return (
@@ -11,12 +12,7 @@ export default function MyBookingsTable({data}) {
           className="flex items-center justify-between border-b pb-4"
         >
           {/* Remove button */}
-          <button
-            // onClick={() => removeItem(item.id)}
-            className="p-2 rounded-full bg-gray-700 hover:bg-red-500 transition text-white"
-          >
-            <X size={18} />
-          </button>
+          <DeleteBookingButton id={item._id}></DeleteBookingButton>
 
           {/* Product info */}
           <div className="flex items-center gap-4 w-1/3">
@@ -51,7 +47,7 @@ export default function MyBookingsTable({data}) {
       <div className="flex justify-between items-center pt-4">
         <button className="flex items-center gap-2 text-gray-600 hover:text-black">
           <ArrowLeft size={16} />
-          Continue Shopping
+          <a href="/">Continue Shopping</a>
         </button>
 
         <button

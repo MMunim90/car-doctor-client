@@ -70,7 +70,7 @@ export default function Navbar() {
           <li onClick={() => signOut()} className="hover:bg-gray-200 px-3 py-1 rounded-md cursor-pointer">
             Logout
           </li>
-          <li><Image  className="rounded-full border-3 border-orange-500" src={cookie?.user?.image} width={40} height={40} alt="user-image"></Image></li>
+          <li><Image  className="rounded-full border-3 border-orange-500" src={cookie?.user?.image || "/assets/avater.png"} width={40} height={40} alt="user-image"></Image></li>
           </>) : (<>
           <li className="hover:bg-gray-200 px-3 py-1 rounded-md">
             <Link href={"/login"}>Login</Link>

@@ -1,18 +1,24 @@
-"use client";
+// "use client";
 import MyBookingsTable from "@/components/tables/MyBookingsTable";
+import { headers } from "next/headers";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 
-export default function MyBookingsPage() {
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        const fetchMyBookings = async() => {
-            const res = await fetch("http://localhost:3000/api/service");
-            const d = await res.json();
-            setData(d);
-        };
-        fetchMyBookings();
-    }, [])
+const fetchMyBookings = async () => {
+  const res = await fetch("http://localhost:3000/api/service", {
+    headers: headers(),
+  });
+  const d = await res.json();
+  // setData(d);
+  return d;
+};
+
+export default async function MyBookingsPage() {
+  const data = await fetchMyBookings();
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   fetchMyBookings();
+  // }, []);
 
   return (
     <div className="w-11/12 mx-auto space-y-4 my-10">
