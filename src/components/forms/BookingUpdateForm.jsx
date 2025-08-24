@@ -1,21 +1,23 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function BookingUpdateForm({ data }) {
   const { data: cookie } = useSession();
+  const router = useRouter()
   console.log(data)
 
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    phone: data.phone,
     email: "",
-    date: "",
+    date: data.date,
     dueAmount: "",
-    address: "",
-    message: "",
+    address: data.address,
+    message: data.message,
     service_id: data._id,
     service_name: data.title,
     service_img: data.img,
@@ -28,7 +30,7 @@ export default function BookingUpdateForm({ data }) {
         ...prev,
         name: cookie.user.name || "",
         email: cookie.user.email || "",
-        dueAmount: data.price || "",
+        dueAmount: data.dueAmount || "",
       }));
     }
   }, [cookie, data]);
@@ -46,30 +48,31 @@ export default function BookingUpdateForm({ data }) {
   const handleCheckoutService = async (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-
+    toast("Updating....");
     try {
-      const res = await fetch("http://localhost:3000/api/service", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/api/my-bookings/${data._id}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (res.ok) {
-        toast.success("Order Confirmed Successfully!");
+        toast.success("Booking Updated Successfully!");
         setFormData({
           name: cookie?.user?.name || "",
-          phone: "",
+          phone: data?.phone || "",
           email: cookie?.user?.email || "",
-          date: "",
-          dueAmount: data?.price || "",
-          address: "",
-          message: "",
+          date: data?.date || "",
+          dueAmount: data?.dueAmount || "",
+          address: data?.address,
+          message: data?.message,
           service_id: data._id,
           service_name: data.title,
           service_img: data.img,
         });
+        router.push("/my-bookings")
       } else {
-        toast.error("Failed to confirm order.");
+        toast.error("Failed to Update Booking.");
       }
     } catch (error) {
       console.error(error);
@@ -116,7 +119,7 @@ export default function BookingUpdateForm({ data }) {
         className="space-y-4 bg-gray-100 p-12 rounded-lg"
       >
         <p className="text-center text-3xl font-bold mb-10">
-          Book Service: {data?.title}
+          Book Service: {data?.service_name}
         </p>
 
         {/* First row */}
@@ -196,7 +199,7 @@ export default function BookingUpdateForm({ data }) {
           type="submit"
           className="w-full bg-red-500 text-white font-semibold py-3 rounded hover:bg-red-600 transition"
         >
-          Order Confirm
+          Update Bookings
         </button>
       </form>
     </div>
