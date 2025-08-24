@@ -50,7 +50,7 @@ export default function BookingUpdateForm({ data }) {
     console.log("Form submitted:", formData);
     toast("Updating....");
     try {
-      const res = await fetch(`http://localhost:3000/api/my-bookings/${data._id}`, {
+      const res = await fetch(`https://car-doctor-gray.vercel.app/api/my-bookings/${data._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -5,8 +5,8 @@ import Image from "next/image";
 // import React, { useEffect, useState } from "react";
 
 const fetchMyBookings = async () => {
-  const res = await fetch("http://localhost:3000/api/service", {
-    headers: await headers(),
+  const res = await fetch("https://car-doctor-gray.vercel.app/api/service", {
+    headers: new Headers(await headers()),
   });
   const d = await res.json();
   // setData(d);

@@ -47,7 +47,7 @@ export default function CheckoutForm({ data }) {
     console.log("Form submitted:", formData);
 
     try {
-      const res = await fetch("http://localhost:3000/api/service", {
+      const res = await fetch("https://car-doctor-gray.vercel.app/api/service", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
